@@ -1,10 +1,11 @@
 {
   "name": "keycloak-integration",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Reusable Keycloak integration package",
   "main": "index.js",
   "author": "Shivam",
   "license": "MIT",
+  "types": "index.d.ts",
   "dependencies": {
     "keycloak-js": "^26.0.7"
   },
