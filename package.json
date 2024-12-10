@@ -1,0 +1,15 @@
+{
+  "name": "keycloak-integration",
+  "version": "1.0.0",
+  "description": "Reusable Keycloak integration package",
+  "main": "index.js",
+  "author": "Shivam",
+  "license": "MIT",
+  "dependencies": {
+    "keycloak-js": "^26.0.7"
+  },
+  "devDependencies": {
+    "eslint": "^9.16.0",
+    "prettier": "^3.4.2"
+  }
+}
