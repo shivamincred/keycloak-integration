@@ -2,39 +2,46 @@ import Keycloak from 'keycloak-js';
 
 class KeycloakService {
     constructor(config) {
-        this.keycloak = Keycloak({
-            url: config.authServerUrl,
-            realm: config.realm,
-            clientId: config.clientId,
-        });
+        if (!config || !config.url || !config.realm || !config.clientId) {
+            throw new Error("The configuration object must include 'url', 'realm', and 'clientId' properties.");
+        }
+        this.keycloakInstance = new Keycloak(config); // Keycloak instance creation
+        console.log('Keycloak Instance:', this.keycloakInstance); // Debug log
     }
 
-    init(options = {}) {
-        return this.keycloak.init({
-            onLoad: options.onLoad || 'login-required',
-            checkLoginIframe: options.checkLoginIframe || false,
-            ...options,
-        });
+    init(options) {
+        if (!this.keycloakInstance) {
+            throw new Error('Keycloak instance is not initialized.');
+        }
+        return this.keycloakInstance.init(options);
     }
 
     login() {
-        return this.keycloak.login();
+        if (!this.keycloakInstance) {
+            throw new Error('Keycloak instance is not initialized.');
+        }
+        return this.keycloakInstance.login();
     }
 
     logout() {
-        return this.keycloak.logout();
+        if (!this.keycloakInstance) {
+            throw new Error('Keycloak instance is not initialized.');
+        }
+        return this.keycloakInstance.logout();
     }
 
     getToken() {
-        return this.keycloak.token;
-    }
-
-    isAuthenticated() {
-        return this.keycloak.authenticated;
+        if (!this.keycloakInstance) {
+            throw new Error('Keycloak instance is not initialized.');
+        }
+        return this.keycloakInstance.token;
     }
 
     getUserInfo() {
-        return this.keycloak.loadUserInfo();
+        if (!this.keycloakInstance) {
+            throw new Error('Keycloak instance is not initialized.');
+        }
+        return this.keycloakInstance.loadUserInfo();
     }
 }
 

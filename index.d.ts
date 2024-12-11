@@ -1,6 +1,6 @@
 declare class KeycloakService {
     constructor(config: {
-        authServerUrl: string;
+        url: string;
         realm: string;
         clientId: string;
     });
@@ -10,5 +10,6 @@ declare class KeycloakService {
     getToken(): Promise<string>;
     getUserInfo(): Promise<any>;
 }
+
 
 export default KeycloakService;
